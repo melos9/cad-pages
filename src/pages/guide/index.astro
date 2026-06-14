@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<BaseLayout title="試験概要ガイド | CAD利用技術者試験 2次元2級" description="難易度・合格率・受験者層を把握する試験ガイド">
+  <article class="card">
+    <h2>CAD利用技術者試験 2次元2級とは</h2>
+    <p>CADの基礎知識、製図ルール、図形処理の理解を確認するための資格試験です。本ページはSEO向け読み物として、受験準備の全体像を整理できる内容を用意しています。</p>
+    <h3>難易度の目安</h3>
+    <p>基礎事項を網羅的に押さえることが重要です。暗記だけでなく、図面の読み取りと作図の手順理解を重視しましょう。</p>
+    <h3>合格率・受験者数の見方</h3>
+    <p>実際の統計値は公式発表を参照し、年度差を確認してください。本サイトでは学習計画に必要な観点を分かりやすく整理しています。</p>
+    <div class="grid">
+      <a class="button" href={`${base}guide/study-method/`}>勉強法の記事へ</a>
+      <a class="button" href={`${base}guide/exam-date/`}>試験日程・申込方法へ</a>
+    </div>
+  </article>
+</BaseLayout>

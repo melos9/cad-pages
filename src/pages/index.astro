@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import questionData from '../../content/questions.json';
+
+const base = import.meta.env.BASE_URL;
+---
+<BaseLayout title="CAD利用技術者試験 2次元2級 | 無料演習" description="無料・スマホ対応・過去問道場型の演習Webアプリ">
+  <section class="card">
+    <h2>無料で学べるCAD利用技術者試験 2次元2級の演習サイト</h2>
+    <p>本サイトはダミー問題で構成された初期テンプレートです。後から <code>content/questions.json</code> を差し替えるだけで内容を更新できます。</p>
+  </section>
+
+  <section class="card" style="margin-top: 1rem;">
+    <h2>分野別演習</h2>
+    <div class="grid">
+      {questionData.categories.map((category) => (
+        <a class="button" href={`${base}quiz/${category.id}/`}>{category.name}の演習へ</a>
+      ))}
+    </div>
+  </section>
+
+  <section class="card" style="margin-top: 1rem;">
+    <h2>学習メニュー</h2>
+    <div class="grid">
+      <a class="button" href={`${base}review/`}>復習モード(誤答のみ)</a>
+      <a class="button" href={`${base}stats/`}>学習状況ダッシュボード</a>
+      <a class="button" href={`${base}guide/`}>試験概要ガイド</a>
+    </div>
+  </section>
+</BaseLayout>
