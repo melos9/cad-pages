@@ -1,0 +1,26 @@
+{
+  "name": "cad-pages",
+  "version": "1.0.0",
+  "description": "CAD利用技術者試験 2次元2級 向けの無料・スマホ対応・過去問道場型の演習Webアプリ。",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/melos9/cad-pages.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/melos9/cad-pages/issues"
+  },
+  "homepage": "https://github.com/melos9/cad-pages#readme",
+  "dependencies": {
+    "astro": "^6.4.6"
+  },
+  "private": true
+}

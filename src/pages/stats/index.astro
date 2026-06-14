@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import questionData from '../../../content/questions.json';
+
+const base = import.meta.env.BASE_URL;
+const payload = JSON.stringify({ categories: questionData.categories });
+---
+<BaseLayout title="学習状況 | CAD利用技術者試験 2次元2級" description="localStorageベースの学習ダッシュボード">
+  <section class="card">
+    <h2>学習ダッシュボード</h2>
+    <div id="stats-root"></div>
+  </section>
+  <script id="cad-stats-data" type="application/json" set:html={payload}></script>
+  <script type="module" src={`${base}scripts/stats.js`}></script>
+</BaseLayout>
