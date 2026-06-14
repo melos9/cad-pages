@@ -60,9 +60,14 @@ if (questions.length === 0) {
         const isCorrect = choiceIndex === current.answer;
         recordAnswer({ categoryId: current.categoryId, questionId: current.id, isCorrect });
 
-        Array.from(choicesEl.querySelectorAll('button')).forEach((item) => {
+        Array.from(choicesEl.querySelectorAll('button')).forEach((item, itemIndex) => {
           item.disabled = true;
           item.style.opacity = '0.75';
+          if (itemIndex === current.answer) {
+            item.classList.add('correct');
+          } else if (itemIndex === choiceIndex) {
+            item.classList.add('incorrect');
+          }
         });
 
         const status = isCorrect ? '正解です。' : '不正解です。';
