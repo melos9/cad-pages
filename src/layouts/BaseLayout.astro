@@ -29,6 +29,11 @@ const adsenseClient = import.meta.env.PUBLIC_ADSENSE_CLIENT ?? '';
 const shareText = title;
 const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(canonical)}`;
 
+// フッターのシェアは常にトップページを共有する
+const topUrl = new URL(base, site).toString();
+const footerShareText = `${siteName}｜CAD利用技術者試験 2次元2級を無料・登録不要で演習できる過去問道場`;
+const footerShareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(footerShareText)}&url=${encodeURIComponent(topUrl)}`;
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
@@ -675,7 +680,7 @@ const jsonLd = {
         </nav>
         <div class="share-row">
           <span class="share-row-label">このサイトをシェア：</span>
-          <a class="share-btn" href={shareUrl} target="_blank" rel="noopener noreferrer" aria-label="X (旧Twitter) でシェア">
+          <a class="share-btn" href={footerShareUrl} target="_blank" rel="noopener noreferrer" aria-label="X (旧Twitter) でシェア">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             Xでシェア
           </a>
