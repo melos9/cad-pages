@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const base = import.meta.env.BASE_URL;
-const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL ?? '';
+const contactFormUrl = 'https://forms.gle/EPbZLMWhuEjKYA2cA';
 const updatedAt = '2026年6月20日';
 ---
 <BaseLayout
@@ -55,11 +55,7 @@ const updatedAt = '2026年6月20日';
 
   <section class="card">
     <h2>お問い合わせ</h2>
-    <p>当サイトに関するお問い合わせ（内容の誤り・ご要望など）は、以下のメールアドレスまでご連絡ください。</p>
-    {contactEmail ? (
-      <p><strong>メールアドレス：</strong><a href={`mailto:${contactEmail}`}>{contactEmail}</a></p>
-    ) : (
-      <p class="note">※ お問い合わせ用メールアドレスは現在準備中です。掲載までしばらくお待ちください。</p>
-    )}
+    <p>当サイトに関するお問い合わせ（内容の誤り・ご要望など）は、以下のフォームよりご連絡ください。</p>
+    <p><a href={contactFormUrl} target="_blank" rel="noopener noreferrer">お問い合わせフォーム（Googleフォーム）</a></p>
   </section>
 </BaseLayout>
