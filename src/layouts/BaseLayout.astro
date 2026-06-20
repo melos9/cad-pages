@@ -64,7 +64,7 @@ const jsonLd = {
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-    <style>
+    <style is:global>
       :root {
         --c-bg: #f4f6fb;
         --c-surface: #ffffff;
@@ -276,6 +276,123 @@ const jsonLd = {
         font-weight: 600;
       }
       .grid { display: grid; gap: 0.7rem; }
+
+      /* --- Quiz UI --- */
+      .quiz {
+        background: var(--c-surface);
+        border: 1px solid var(--c-border);
+        border-radius: var(--radius-lg);
+        padding: 1.1rem;
+        margin-top: 0.5rem;
+      }
+      .quiz-progress { margin-bottom: 1rem; }
+      .quiz-progress-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+        color: var(--c-muted);
+        margin-bottom: 0.4rem;
+      }
+      .quiz-count { font-weight: 700; color: var(--c-text); }
+      .quiz-cat {
+        background: var(--c-bg);
+        border: 1px solid var(--c-border);
+        border-radius: 999px;
+        padding: 0.15rem 0.7rem;
+        font-size: 0.78rem;
+      }
+      .quiz-bar {
+        height: 8px;
+        background: var(--c-border);
+        border-radius: 999px;
+        overflow: hidden;
+      }
+      .quiz-bar-fill {
+        display: block;
+        height: 100%;
+        background: linear-gradient(90deg, var(--c-primary), var(--c-accent));
+        border-radius: 999px;
+        transition: width 0.3s ease;
+      }
+      .quiz-question {
+        font-size: 1.1rem;
+        font-weight: 600;
+        line-height: 1.6;
+        margin: 0 0 1rem;
+        color: var(--c-text);
+      }
+      .quiz-choices {
+        display: grid;
+        gap: 0.6rem;
+      }
+      .quiz-choices .choice-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        min-height: 56px;
+        padding: 0.7rem 0.9rem;
+      }
+      .choice-key {
+        flex-shrink: 0;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: var(--c-bg);
+        border: 1px solid var(--c-border);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: var(--c-primary);
+      }
+      .choice-text { flex: 1; line-height: 1.5; }
+      .choice-btn.correct .choice-key {
+        background: var(--c-correct);
+        border-color: var(--c-correct);
+        color: #fff;
+      }
+      .choice-btn.incorrect .choice-key {
+        background: var(--c-incorrect);
+        border-color: var(--c-incorrect);
+        color: #fff;
+      }
+      .choice-btn.dimmed { opacity: 0.55; }
+      .choice-btn:disabled { cursor: default; }
+      .quiz-result { margin-top: 1rem; }
+      .quiz-result .button { margin-top: 0.9rem; width: 100%; justify-content: center; }
+      .quiz-result .button::after { content: none; }
+      .result-box {
+        border-radius: var(--radius-md);
+        padding: 0.9rem 1rem;
+        border: 1px solid var(--c-border);
+      }
+      .result-box.is-correct {
+        background: var(--c-correct-bg);
+        border-color: var(--c-correct);
+      }
+      .result-box.is-incorrect {
+        background: var(--c-incorrect-bg);
+        border-color: var(--c-incorrect);
+      }
+      .result-status {
+        margin: 0 0 0.4rem;
+        font-weight: 700;
+        font-size: 1.05rem;
+      }
+      .is-correct .result-status { color: var(--c-correct); }
+      .is-incorrect .result-status { color: var(--c-incorrect); }
+      .result-explain { margin: 0; line-height: 1.7; }
+      .quiz-summary { text-align: center; padding: 1.6rem 1.1rem; }
+      .summary-title { font-size: 1.15rem; font-weight: 700; margin: 0 0 0.5rem; }
+      .summary-score { font-size: 1.05rem; margin: 0 0 0.8rem; }
+      .summary-score strong { font-size: 1.6rem; color: var(--c-primary); }
+      .quiz-summary .quiz-bar { max-width: 320px; margin: 0 auto 1.2rem; }
+      .quiz-summary .button { display: inline-flex; }
+      .quiz-summary .button::after { content: none; }
+
       .breadcrumbs {
         font-size: 0.85rem;
         color: var(--c-muted);
@@ -414,7 +531,7 @@ const jsonLd = {
           <a href={`${base}review/`}>復習モード</a>
           <a href={`${base}stats/`}>学習状況</a>
         </nav>
-        <p class="footer-copy">© CAD Pages / 学習履歴はブラウザのlocalStorageに保存されます。</p>
+        <p class="footer-copy">© CAD Pages / 無料・登録不要のCAD試験 演習サイト</p>
       </div>
     </footer>
   </body>
