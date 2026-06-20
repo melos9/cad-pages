@@ -21,9 +21,13 @@ const navItems = [
   { href: base, label: 'トップ', match: baseTrim, exact: true },
   { href: `${base}quiz/cad-system/`, label: '分野別演習', match: `${baseTrim}/quiz` },
   { href: `${base}review/`, label: '復習', match: `${baseTrim}/review` },
-  { href: `${base}stats/`, label: '学習状況', match: `${baseTrim}/stats` },
-  { href: `${base}guide/`, label: '試験ガイド', match: `${baseTrim}/guide` }
+  { href: `${base}stats/`, label: '学習状況', match: `${baseTrim}/stats` }
 ];
+
+const adsenseClient = import.meta.env.PUBLIC_ADSENSE_CLIENT ?? '';
+
+const shareText = `${title} | ${siteName}`;
+const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(canonical)}`;
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -63,6 +67,14 @@ const jsonLd = {
     <meta name="twitter:image" content={ogImage} />
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    {adsenseClient && (
+      <script
+        async
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
+        crossorigin="anonymous"
+      />
+    )}
 
     <style is:global>
       :root {
@@ -392,6 +404,12 @@ const jsonLd = {
       .quiz-summary .quiz-bar { max-width: 320px; margin: 0 auto 1.2rem; }
       .quiz-summary .button { display: inline-flex; }
       .quiz-summary .button::after { content: none; }
+      .quiz-summary-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.6rem;
+      }
 
       /* --- Stats UI --- */
       .stats-summary {
@@ -462,6 +480,44 @@ const jsonLd = {
         border-radius: var(--radius-md);
         padding: 0.7rem 0.9rem;
         margin-top: 1rem;
+      }
+
+      .share-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        align-items: center;
+        margin-top: 0.6rem;
+      }
+      .share-row-label {
+        font-size: 0.85rem;
+        color: var(--c-muted);
+      }
+      .share-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: #000;
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.88rem;
+        font-weight: 600;
+        padding: 0.45rem 0.85rem;
+        border-radius: 999px;
+        line-height: 1;
+        min-height: 36px;
+        border: 1px solid #000;
+        transition: background-color 0.15s, color 0.15s;
+      }
+      .share-btn:hover,
+      .share-btn:focus-visible {
+        background: #fff;
+        color: #000;
+      }
+      .share-btn svg {
+        width: 14px;
+        height: 14px;
+        fill: currentColor;
       }
 
       .breadcrumbs {
@@ -597,12 +653,17 @@ const jsonLd = {
       <div class="footer-inner">
         <nav class="footer-nav" aria-label="フッターナビゲーション">
           <a href={base}>トップ</a>
-          <a href={`${base}guide/`}>試験ガイド</a>
-          <a href={`${base}guide/study-method/`}>勉強法</a>
-          <a href={`${base}guide/exam-date/`}>試験日程・申込</a>
+          <a href={`${base}quiz/cad-system/`}>分野別演習</a>
           <a href={`${base}review/`}>復習モード</a>
           <a href={`${base}stats/`}>学習状況</a>
         </nav>
+        <div class="share-row">
+          <span class="share-row-label">このサイトをシェア：</span>
+          <a class="share-btn" href={shareUrl} target="_blank" rel="noopener noreferrer" aria-label="X (旧Twitter) でシェア">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            Xでシェア
+          </a>
+        </div>
         <p class="footer-copy">© CAD Pages / 無料・登録不要のCAD試験 演習サイト</p>
       </div>
     </footer>

@@ -1,6 +1,27 @@
 ---
-const { position = 'top' } = Astro.props;
+const { position = 'top', slot = '' } = Astro.props;
+const adsenseClient = import.meta.env.PUBLIC_ADSENSE_CLIENT ?? '';
+const adsenseSlot = slot || (
+  position === 'top'
+    ? import.meta.env.PUBLIC_ADSENSE_SLOT_TOP ?? ''
+    : import.meta.env.PUBLIC_ADSENSE_SLOT_BOTTOM ?? ''
+);
+const enabled = Boolean(adsenseClient && adsenseSlot);
 ---
-<div class="ad-slot" data-position={position} role="complementary" aria-label="広告枠プレースホルダー">
-  <!-- ADSENSE_SLOT -->
-</div>
+{enabled ? (
+  <div class="ad-slot ad-slot-live" data-position={position}>
+    <ins
+      class="adsbygoogle"
+      style="display:block"
+      data-ad-client={adsenseClient}
+      data-ad-slot={adsenseSlot}
+      data-ad-format="auto"
+      data-full-width-responsive="true"
+    />
+    <script set:html={`(adsbygoogle = window.adsbygoogle || []).push({});`} />
+  </div>
+) : import.meta.env.DEV ? (
+  <div class="ad-slot" data-position={position} role="complementary" aria-label="広告枠プレースホルダー">
+    <!-- ADSENSE_SLOT -->
+  </div>
+) : null}

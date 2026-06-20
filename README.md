@@ -29,9 +29,6 @@ npm run build
 - `/quiz/[category]/` 分野別演習
 - `/review/` 復習モード(誤答のみ)
 - `/stats/` 学習ダッシュボード
-- `/guide/` 試験概要
-- `/guide/study-method/` 勉強法
-- `/guide/exam-date/` 試験日程・申込方法
 
 ## 問題データの追加・差し替え
 
@@ -44,8 +41,8 @@ npm run build
   "exam": "CAD利用技術者試験 2次元2級",
   "categories": [
     {
-      "id": "cad-general",
-      "name": "CAD一般知識",
+      "id": "cad-system",
+      "name": "CADシステムと周辺知識",
       "questions": [
         {
           "id": "q001",
@@ -60,12 +57,23 @@ npm run build
 }
 ```
 
-## AdSense プレースホルダー
+## Google AdSense
 
-各ページ上部・下部に `src/components/AdSlot.astro` を配置しています。  
-現在は `<!-- ADSENSE_SLOT -->` コメント入りの空 `div` のみです。
+各ページ上部・下部に `src/components/AdSlot.astro` を配置しています。以下の環境変数をビルド時に設定すると、AdSense広告タグ（`adsbygoogle.js` ローダーと `<ins>` タグ）が自動で出力されます。
 
-実運用時は `AdSlot.astro` に AdSense タグを差し込んでください(回答ボタン周辺には配置しないこと)。
+```
+PUBLIC_ADSENSE_CLIENT=ca-pub-XXXXXXXXXXXXXXXX
+PUBLIC_ADSENSE_SLOT_TOP=1234567890
+PUBLIC_ADSENSE_SLOT_BOTTOM=0987654321
+```
+
+- 未設定時：本番ビルドでは広告枠は出力されません（`npm run dev` 中はプレースホルダーを表示）。
+- GitHub Actions で使う場合は Repository の **Settings > Secrets and variables > Actions > Variables** に上記名の変数を追加し、`deploy.yml` の `env:` で渡してください。
+- AdSense ポリシーに従い、回答ボタンやコンテンツと広告を見分けにくい配置は避けてください。
+
+## SNSシェア
+
+フッターに X (旧Twitter) へのシェアボタンを設置しています。クイズ完了画面では「結果をXでシェア」ボタン（正答率付きツイート）も表示されます。
 
 ## GitHub Pages デプロイ
 

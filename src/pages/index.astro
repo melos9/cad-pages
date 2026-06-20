@@ -23,7 +23,7 @@ const totalQuestions = questionData.categories.reduce(
     </ul>
     <div class="grid" style="margin-top: 1rem;">
       <a class="button primary" href={`${base}quiz/${questionData.categories[0].id}/`}>今すぐ演習を始める</a>
-      <a class="button" href={`${base}guide/`}>試験ガイドを読む</a>
+      <a class="button" href={`${base}review/`}>間違えた問題を復習する</a>
     </div>
   </section>
 
@@ -42,8 +42,6 @@ const totalQuestions = questionData.categories.reduce(
     <div class="grid">
       <a class="button" href={`${base}review/`}>間違えた問題だけを復習する</a>
       <a class="button" href={`${base}stats/`}>分野ごとの正答率を確認する</a>
-      <a class="button" href={`${base}guide/`}>試験の概要を知る</a>
-      <a class="button" href={`${base}guide/study-method/`}>効率のよい勉強法を知る</a>
     </div>
   </section>
 

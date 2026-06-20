@@ -6,12 +6,7 @@ export const GET: APIRoute = ({ site }) => {
   const base = import.meta.env.BASE_URL;
   const today = new Date().toISOString().split('T')[0];
 
-  const staticPaths = [
-    '',
-    'guide/',
-    'guide/study-method/',
-    'guide/exam-date/'
-  ];
+  const staticPaths = ['', 'review/', 'stats/'];
 
   const quizPaths = questionData.categories.map((c) => `quiz/${c.id}/`);
   const allPaths = [...staticPaths, ...quizPaths];

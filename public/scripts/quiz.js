@@ -116,12 +116,20 @@ if (questions.length === 0) {
 
   function renderSummary() {
     const rate = Math.round((correctCount / total) * 100);
+    const shareText = `CAD利用技術者試験 2次元2級の演習で ${correctCount}/${total} 問正解（正答率 ${rate}%）でした！`;
+    const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(location.href)}`;
     root.innerHTML = `
       <div class="quiz quiz-summary">
         <p class="summary-title">おつかれさまでした！</p>
         <p class="summary-score"><strong>${correctCount}</strong> / ${total} 問正解（正答率 ${rate}%）</p>
         <div class="quiz-bar"><span class="quiz-bar-fill" style="width:${rate}%"></span></div>
-        <button type="button" id="retry" class="button primary">もう一度解く</button>
+        <div class="quiz-summary-actions">
+          <button type="button" id="retry" class="button primary">もう一度解く</button>
+          <a class="share-btn" href="${shareUrl}" target="_blank" rel="noopener noreferrer" aria-label="結果をXでシェア">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            結果をXでシェア
+          </a>
+        </div>
       </div>
     `;
     document.getElementById('retry')?.addEventListener('click', () => {
