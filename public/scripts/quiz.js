@@ -55,6 +55,7 @@ if (questions.length === 0) {
           </div>
         </div>
         <p class="quiz-question">${current.text}</p>
+        ${current.figure ? `<figure class="quiz-figure">${current.figure}</figure>` : ''}
         <div class="quiz-choices" id="choices"></div>
         <div id="result" class="quiz-result"></div>
       </div>

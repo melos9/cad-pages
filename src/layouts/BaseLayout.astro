@@ -26,7 +26,7 @@ const navItems = [
 
 const adsenseClient = import.meta.env.PUBLIC_ADSENSE_CLIENT ?? '';
 
-const shareText = `${title} | ${siteName}`;
+const shareText = title;
 const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(canonical)}`;
 
 const jsonLd = {
@@ -333,6 +333,21 @@ const jsonLd = {
         font-weight: 600;
         line-height: 1.6;
         margin: 0 0 1rem;
+        color: var(--c-text);
+      }
+      .quiz-figure {
+        margin: 0 0 1rem;
+        padding: 1rem;
+        background: var(--c-bg);
+        border: 1px solid var(--c-border);
+        border-radius: var(--radius-md);
+        display: flex;
+        justify-content: center;
+      }
+      .quiz-figure svg {
+        width: 100%;
+        max-width: 320px;
+        height: auto;
         color: var(--c-text);
       }
       .quiz-choices {

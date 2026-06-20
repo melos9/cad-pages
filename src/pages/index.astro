@@ -10,7 +10,7 @@ const totalQuestions = questionData.categories.reduce(
 ---
 <BaseLayout
   title="CAD利用技術者試験 2次元2級 無料Web演習 | 過去問道場"
-  description="CAD利用技術者試験 2次元2級の無料Web演習サイト。スマホ・PC対応、出題範囲を11分野・全111問の一問一答で対策。やさしい解説つきで、間違えた問題だけをまとめて復習できます。登録不要ですぐに始められます。"
+  description={`CAD利用技術者試験 2次元2級の無料Web演習サイト。スマホ・PC対応、出題範囲を${questionData.categories.length}分野・全${totalQuestions}問の一問一答で対策。線種・投影法・断面など図付き問題も収録。やさしい解説つきで、間違えた問題だけをまとめて復習できます。登録不要ですぐに始められます。`}
 >
   <section class="card">
     <h1>CAD利用技術者試験 2次元2級の無料Web演習</h1>
