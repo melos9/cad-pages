@@ -15,14 +15,14 @@ const payload = JSON.stringify({ categories: questionData.categories });
   </nav>
   <section class="card">
     <h1>学習状況ダッシュボード</h1>
-    <p class="lead">これまでの学習成果を分野別の正答率や連続学習日数で確認できます。データはこの端末のブラウザ内（localStorage）に保存されています。</p>
+    <p class="lead">これまでの学習の成果を、分野ごとの正答率や連続学習日数で振り返れます。</p>
     <div id="stats-root" aria-live="polite"></div>
   </section>
 
   <section class="card">
     <h2>関連メニュー</h2>
     <div class="grid">
-      <a class="button" href={`${base}quiz/cad-general/`}>分野別演習を続ける</a>
+      <a class="button" href={`${base}quiz/cad-system/`}>分野別演習を続ける</a>
       <a class="button" href={`${base}review/`}>復習モードへ</a>
     </div>
   </section>

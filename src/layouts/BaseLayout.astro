@@ -19,7 +19,7 @@ const baseTrim = base.replace(/\/$/, '');
 const currentPath = Astro.url.pathname.replace(/\/$/, '');
 const navItems = [
   { href: base, label: 'トップ', match: baseTrim, exact: true },
-  { href: `${base}quiz/cad-general/`, label: '分野別演習', match: `${baseTrim}/quiz` },
+  { href: `${base}quiz/cad-system/`, label: '分野別演習', match: `${baseTrim}/quiz` },
   { href: `${base}review/`, label: '復習', match: `${baseTrim}/review` },
   { href: `${base}stats/`, label: '学習状況', match: `${baseTrim}/stats` },
   { href: `${base}guide/`, label: '試験ガイド', match: `${baseTrim}/guide` }
@@ -393,6 +393,77 @@ const jsonLd = {
       .quiz-summary .button { display: inline-flex; }
       .quiz-summary .button::after { content: none; }
 
+      /* --- Stats UI --- */
+      .stats-summary {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.6rem;
+        margin-bottom: 1.2rem;
+      }
+      .stat-chip {
+        background: var(--c-bg);
+        border: 1px solid var(--c-border);
+        border-radius: var(--radius-md);
+        padding: 0.7rem 0.5rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+      .stat-num {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--c-primary);
+        line-height: 1.1;
+      }
+      .stat-num small {
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-left: 0.1rem;
+      }
+      .stat-label {
+        font-size: 0.72rem;
+        color: var(--c-muted);
+      }
+      .stats-heading {
+        font-size: 1.05rem;
+        margin: 0 0 0.7rem;
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.7rem;
+      }
+      .stat-row {
+        background: var(--c-bg);
+        border: 1px solid var(--c-border);
+        border-radius: var(--radius-md);
+        padding: 0.7rem 0.85rem;
+      }
+      .stat-row-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 0.5rem;
+        margin-bottom: 0.4rem;
+      }
+      .stat-row-name { font-weight: 600; font-size: 0.95rem; }
+      .stat-row-val { font-weight: 700; color: var(--c-primary); font-size: 0.95rem; }
+      .stat-row-sub {
+        font-size: 0.78rem;
+        color: var(--c-muted);
+        margin-top: 0.35rem;
+      }
+      .note {
+        font-size: 0.82rem;
+        color: var(--c-muted);
+        line-height: 1.7;
+        background: var(--c-bg);
+        border-radius: var(--radius-md);
+        padding: 0.7rem 0.9rem;
+        margin-top: 1rem;
+      }
+
       .breadcrumbs {
         font-size: 0.85rem;
         color: var(--c-muted);
@@ -449,6 +520,7 @@ const jsonLd = {
         .card { padding: 1.4rem 1.6rem 1.5rem; }
         .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         .grid.single { grid-template-columns: 1fr; }
+        .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       }
       @media (min-width: 1024px) {
         :root { --container: 1100px; }

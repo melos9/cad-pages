@@ -9,28 +9,46 @@ if (!root || !data) {
 }
 
 const progress = loadProgress();
-const categoryRows = data.categories
-  .map((category) => {
-    const stats = progress.categories[category.id] ?? { correct: 0, total: 0 };
-    const rate = stats.total === 0 ? 0 : Math.round((stats.correct / stats.total) * 100);
-    return { name: category.name, ...stats, rate };
-  })
+
+const totalAnswered = data.categories.reduce((sum, category) => {
+  const stats = progress.categories[category.id];
+  return sum + (stats ? stats.total : 0);
+}, 0);
+
+const summaryChips = [
+  { label: '連続学習日数', value: `${progress.streak}`, unit: '日' },
+  { label: '復習できる誤答', value: `${progress.wrongQuestionIds.length}`, unit: '問' },
+  { label: '解いた問題数', value: `${totalAnswered}`, unit: '問' }
+]
   .map(
-    (row) => `
-      <li style="margin-bottom: 0.7rem;">
-        <strong>${row.name}</strong><br />
-        正答率: ${row.rate}% (${row.correct}/${row.total})
-      </li>
-    `
+    (chip) => `
+      <div class="stat-chip">
+        <span class="stat-num">${chip.value}<small>${chip.unit}</small></span>
+        <span class="stat-label">${chip.label}</span>
+      </div>`
   )
   .join('');
 
+const categoryCards = data.categories
+  .map((category) => {
+    const stats = progress.categories[category.id] ?? { correct: 0, total: 0 };
+    const rate = stats.total === 0 ? 0 : Math.round((stats.correct / stats.total) * 100);
+    const done = stats.total > 0;
+    return `
+      <div class="stat-row">
+        <div class="stat-row-head">
+          <span class="stat-row-name">${category.name}</span>
+          <span class="stat-row-val">${done ? `${rate}%` : '未挑戦'}</span>
+        </div>
+        <div class="quiz-bar"><span class="quiz-bar-fill" style="width:${rate}%"></span></div>
+        <div class="stat-row-sub">${done ? `${stats.correct} / ${stats.total} 問正解` : 'まだ解いていません'}</div>
+      </div>`;
+  })
+  .join('');
+
 root.innerHTML = `
-  <div class="card" style="margin-top: 0.75rem;">
-    <p><strong>連続学習日数:</strong> ${progress.streak} 日</p>
-    <p><strong>最終学習日:</strong> ${progress.lastStudyDate ?? 'まだ学習記録がありません'}</p>
-    <p><strong>復習対象の誤答数:</strong> ${progress.wrongQuestionIds.length} 問</p>
-    <h3>分野別進捗</h3>
-    <ul style="padding-left: 1.2rem;">${categoryRows}</ul>
-  </div>
+  <div class="stats-summary">${summaryChips}</div>
+  <h2 class="stats-heading">分野別の正答率</h2>
+  <div class="stats-grid">${categoryCards}</div>
+  <p class="note">※ 学習の記録はお使いのブラウザに保存されます。ブラウザのデータ（履歴・サイトデータ）を消去したり、別の端末・ブラウザに変えると記録は引き継がれません。</p>
 `;

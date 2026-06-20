@@ -63,13 +63,17 @@ if (questions.length === 0) {
     const choicesEl = document.getElementById('choices');
     const resultEl = document.getElementById('result');
 
-    current.choices.forEach((choice, choiceIndex) => {
+    const shuffledChoices = shuffle(
+      current.choices.map((text, i) => ({ text, correct: i === current.answer }))
+    );
+
+    shuffledChoices.forEach((choice, choiceIndex) => {
       const button = document.createElement('button');
       button.type = 'button';
       button.className = 'choice-btn';
-      button.innerHTML = `<span class="choice-key">${choiceLabels[choiceIndex] ?? choiceIndex + 1}</span><span class="choice-text">${choice}</span>`;
+      button.innerHTML = `<span class="choice-key">${choiceLabels[choiceIndex] ?? choiceIndex + 1}</span><span class="choice-text">${choice.text}</span>`;
       button.addEventListener('click', () => {
-        const isCorrect = choiceIndex === current.answer;
+        const isCorrect = choice.correct;
         if (isCorrect) {
           correctCount += 1;
         }
@@ -77,7 +81,7 @@ if (questions.length === 0) {
 
         Array.from(choicesEl.querySelectorAll('button')).forEach((item, itemIndex) => {
           item.disabled = true;
-          if (itemIndex === current.answer) {
+          if (shuffledChoices[itemIndex].correct) {
             item.classList.add('correct');
           } else if (itemIndex === choiceIndex) {
             item.classList.add('incorrect');
