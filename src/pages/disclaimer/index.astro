@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL ?? '';
+const updatedAt = '2026年6月20日';
+---
+<BaseLayout
+  title="免責事項・お問い合わせ | CAD利用技術者試験 2次元2級"
+  description="当サイト（CAD利用技術者試験 2次元2級の無料Web演習）の免責事項、広告（Google AdSense）・Cookieの取り扱い、著作権、お問い合わせ先を掲載しています。"
+  pageType="website"
+>
+  <nav class="breadcrumbs" aria-label="パンくず">
+    <a href={base}>トップ</a> › 免責事項・お問い合わせ
+  </nav>
+
+  <section class="card">
+    <h1>免責事項・お問い合わせ</h1>
+    <p class="lead">当サイトをご利用いただく前に、以下の内容をご確認ください。</p>
+    <p class="note">最終更新日：{updatedAt}</p>
+  </section>
+
+  <section class="card">
+    <h2>免責事項</h2>
+    <ul>
+      <li>当サイトは、CAD利用技術者試験（2次元2級）の合格を目的とした<strong>非公式の学習・演習サイト</strong>です。試験を主催する一般社団法人コンピュータ教育振興協会（ACSP）および関連団体とは一切関係がありません。</li>
+      <li>掲載している問題・解説は、一般的な製図・CADの知識をもとに当サイトが独自に作成したオリジナルの内容です。<strong>実際の試験問題そのものではなく</strong>、出題形式・範囲・難易度・正答を保証するものではありません。</li>
+      <li>内容の正確性・最新性には努めていますが、誤りや古い情報が含まれる可能性があります。学習にあたっては、必ず公式ガイドブックや最新の試験情報もあわせてご確認ください。</li>
+      <li>当サイトの利用によって生じたいかなる損害（学習結果・受験結果を含む）についても、運営者は責任を負いかねます。あらかじめご了承ください。</li>
+      <li>当サイトからリンクする外部サイトの内容については、運営者は責任を負いません。</li>
+      <li>掲載内容は予告なく変更・追加・削除する場合があります。</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>学習記録の保存について</h2>
+    <p>当サイトの学習記録（解答状況・誤答リストなど）は、サーバーには送信されず、お使いの<strong>ブラウザ内（localStorage）にのみ保存</strong>されます。ブラウザのデータ（履歴・サイトデータ）を消去したり、別の端末・ブラウザに変更すると記録は引き継がれません。</p>
+  </section>
+
+  <section class="card">
+    <h2>広告（Google AdSense）について</h2>
+    <p>当サイトでは、第三者配信の広告サービス「Google AdSense」を利用する場合があります。Googleなどの第三者配信事業者は、Cookieを使用して、ユーザーの過去の当サイトや他サイトへのアクセス情報に基づいて広告を配信することがあります。</p>
+    <ul>
+      <li>Cookieを無効にする設定や、Googleの広告に関する設定は、<a href="https://myadcenter.google.com/" target="_blank" rel="noopener noreferrer">Google 広告設定</a>から行えます。</li>
+      <li>第三者配信事業者によるCookieの利用を無効にする方法は、<a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer">aboutads.info</a>のページをご覧ください。</li>
+      <li>その他の広告ネットワークによるCookie利用の無効化については、各事業者のオプトアウトページをご確認ください。</li>
+    </ul>
+    <p class="note">Cookieを無効化しても、当サイトの演習機能はご利用いただけます。</p>
+  </section>
+
+  <section class="card">
+    <h2>著作権について</h2>
+    <p>当サイトに掲載している問題文・解説・図（イラスト）などのコンテンツの著作権は、運営者に帰属します。無断での複製・転載・再配布はご遠慮ください。</p>
+  </section>
+
+  <section class="card">
+    <h2>お問い合わせ</h2>
+    <p>当サイトに関するお問い合わせ（内容の誤り・ご要望など）は、以下のメールアドレスまでご連絡ください。</p>
+    {contactEmail ? (
+      <p><strong>メールアドレス：</strong><a href={`mailto:${contactEmail}`}>{contactEmail}</a></p>
+    ) : (
+      <p class="note">※ お問い合わせ用メールアドレスは現在準備中です。掲載までしばらくお待ちください。</p>
+    )}
+  </section>
+</BaseLayout>

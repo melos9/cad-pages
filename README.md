@@ -29,6 +29,7 @@ npm run build
 - `/quiz/[category]/` 分野別演習
 - `/review/` 復習モード(誤答のみ)
 - `/stats/` 学習ダッシュボード
+- `/disclaimer/` 免責事項・お問い合わせ
 
 ## 問題データの追加・差し替え
 
@@ -74,6 +75,14 @@ PUBLIC_ADSENSE_SLOT_BOTTOM=0987654321
 ## SNSシェア
 
 フッターに X (旧Twitter) へのシェアボタンを設置しています。クイズ完了画面では「結果をXでシェア」ボタン（正答率付きツイート）も表示されます。
+
+## 免責事項・お問い合わせページ
+
+`/disclaimer/` に免責事項・Google AdSense・Cookie・著作権・お問い合わせを掲載しています。お問い合わせ用メールアドレスは環境変数で指定します（未設定時は「準備中」と表示）。
+
+```
+PUBLIC_CONTACT_EMAIL=contact@example.com
+```
 
 ## GitHub Pages デプロイ
 
