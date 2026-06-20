@@ -3,28 +3,56 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import questionData from '../../content/questions.json';
 
 const base = import.meta.env.BASE_URL;
+const totalQuestions = questionData.categories.reduce(
+  (sum, category) => sum + category.questions.length,
+  0
+);
 ---
-<BaseLayout title="CAD利用技術者試験 2次元2級 | 無料演習" description="無料・スマホ対応・過去問道場型の演習Webアプリ">
+<BaseLayout
+  title="CAD利用技術者試験 2次元2級 無料Web演習 | 過去問道場"
+  description="CAD利用技術者試験 2次元2級の無料Web演習サイト。スマホ・PC対応、分野別の一問一答、誤答だけを復習できるモード、学習状況ダッシュボードを搭載。すべての学習履歴はブラウザ内に保存され、登録不要で使えます。"
+>
   <section class="card">
-    <h2>無料で学べるCAD利用技術者試験 2次元2級の演習サイト</h2>
-    <p>本サイトはダミー問題で構成された初期テンプレートです。後から <code>content/questions.json</code> を差し替えるだけで内容を更新できます。</p>
+    <h1>CAD利用技術者試験 2次元2級の無料Web演習</h1>
+    <p class="lead">スマホでもPCでも同じ操作感で学べる、登録不要・無料のCAD試験対策サイトです。分野別の一問一答と、誤答だけを抽出する復習モードを搭載しています。</p>
+    <ul>
+      <li><strong>{questionData.categories.length}分野・全{totalQuestions}問</strong>の一問一答形式（順次拡充中）</li>
+      <li>回答直後に正誤と解説を表示</li>
+      <li>学習履歴はブラウザ内（localStorage）に保存され、ログイン不要</li>
+    </ul>
+    <div class="grid" style="margin-top: 1rem;">
+      <a class="button primary" href={`${base}quiz/${questionData.categories[0].id}/`}>今すぐ演習を始める</a>
+      <a class="button" href={`${base}guide/`}>試験ガイドを読む</a>
+    </div>
   </section>
 
-  <section class="card" style="margin-top: 1rem;">
+  <section class="card">
     <h2>分野別演習</h2>
+    <p>気になる分野を選んで、一問一答形式で取り組めます。回答するたびに自動で学習履歴が記録されます。</p>
     <div class="grid">
       {questionData.categories.map((category) => (
-        <a class="button" href={`${base}quiz/${category.id}/`}>{category.name}の演習へ</a>
+        <a class="button" href={`${base}quiz/${category.id}/`}>{category.name}の演習へ（{category.questions.length}問）</a>
       ))}
     </div>
   </section>
 
-  <section class="card" style="margin-top: 1rem;">
+  <section class="card">
     <h2>学習メニュー</h2>
     <div class="grid">
-      <a class="button" href={`${base}review/`}>復習モード(誤答のみ)</a>
+      <a class="button" href={`${base}review/`}>復習モード（誤答のみ再出題）</a>
       <a class="button" href={`${base}stats/`}>学習状況ダッシュボード</a>
       <a class="button" href={`${base}guide/`}>試験概要ガイド</a>
+      <a class="button" href={`${base}guide/study-method/`}>勉強法のガイド</a>
     </div>
+  </section>
+
+  <section class="card">
+    <h2>本サイトの特徴</h2>
+    <h3>スマホ・PC両対応の見やすいデザイン</h3>
+    <p>選択肢ボタンはタップしやすいサイズ、文字はPCでも読みやすい行間に調整しています。ダークモード環境にも自動対応します。</p>
+    <h3>登録不要・データはローカル保存</h3>
+    <p>正答率や誤答リストはブラウザのlocalStorageに保存されます。アカウント登録は不要で、すぐに学習を始められます。</p>
+    <h3>復習が続けやすい一問一答</h3>
+    <p>分野別演習で間違えた問題のみを抽出して復習できるため、苦手分野を短時間で潰すことができます。</p>
   </section>
 </BaseLayout>

@@ -74,7 +74,7 @@ if (questions.length === 0) {
         resultEl.innerHTML = `
           <p><strong>${status}</strong></p>
           <p>${current.explanation}</p>
-          <button type="button" id="next-question">次の問題へ</button>
+          <button type="button" id="next-question" class="button primary" style="margin-top:0.75rem;">次の問題へ</button>
         `;
 
         const nextButton = document.getElementById('next-question');

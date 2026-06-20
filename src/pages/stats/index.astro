@@ -5,11 +5,28 @@ import questionData from '../../../content/questions.json';
 const base = import.meta.env.BASE_URL;
 const payload = JSON.stringify({ categories: questionData.categories });
 ---
-<BaseLayout title="学習状況 | CAD利用技術者試験 2次元2級" description="localStorageベースの学習ダッシュボード">
+<BaseLayout
+  title="学習状況ダッシュボード | CAD利用技術者試験 2次元2級"
+  description="分野別の正答率、連続学習日数、復習対象の誤答数をブラウザ内で確認できる学習ダッシュボード。データはlocalStorageに保存され、登録不要で利用できます。"
+  noindex={true}
+>
+  <nav class="breadcrumbs" aria-label="パンくず">
+    <a href={base}>トップ</a> › 学習状況
+  </nav>
   <section class="card">
-    <h2>学習ダッシュボード</h2>
-    <div id="stats-root"></div>
+    <h1>学習状況ダッシュボード</h1>
+    <p class="lead">これまでの学習成果を分野別の正答率や連続学習日数で確認できます。データはこの端末のブラウザ内（localStorage）に保存されています。</p>
+    <div id="stats-root" aria-live="polite"></div>
   </section>
+
+  <section class="card">
+    <h2>関連メニュー</h2>
+    <div class="grid">
+      <a class="button" href={`${base}quiz/cad-general/`}>分野別演習を続ける</a>
+      <a class="button" href={`${base}review/`}>復習モードへ</a>
+    </div>
+  </section>
+
   <script id="cad-stats-data" type="application/json" set:html={payload}></script>
   <script type="module" src={`${base}scripts/stats.js`}></script>
 </BaseLayout>

@@ -1,16 +1,41 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
 ---
-<BaseLayout title="試験日程・申込方法 | CAD利用技術者試験 2次元2級" description="受験スケジュールと申込時の確認事項">
+<BaseLayout
+  title="試験日程・申込方法 | CAD利用技術者試験 2次元2級"
+  description="CAD利用技術者試験 2次元2級の試験日程・受験方式・申込時の確認事項。申込前にチェックしておきたいポイントと、直前期の学習計画の立て方を整理しています。"
+  pageType="article"
+>
+  <nav class="breadcrumbs" aria-label="パンくず">
+    <a href={base}>トップ</a> › <a href={`${base}guide/`}>試験ガイド</a> › 試験日程・申込方法
+  </nav>
   <article class="card">
-    <h2>試験日程・申込方法</h2>
-    <p>最新の日程・会場・申込要件は必ず公式情報で確認してください。本ページでは確認時のチェックポイントをまとめます。</p>
-    <h3>確認ポイント</h3>
+    <h1>試験日程・申込方法</h1>
+    <p class="lead">最新の日程・会場・申込要件は必ず<strong>公式情報</strong>で確認してください。本ページでは、申込前に確認しておきたい一般的なチェックポイントをまとめます。</p>
+
+    <h2>申込前に確認すべきポイント</h2>
     <ul>
       <li>試験実施月と申込締切日</li>
-      <li>受験方式(会場・CBTなど)</li>
-      <li>必要書類と受験料</li>
+      <li>受験方式（会場試験／CBT方式 など）</li>
+      <li>受験料と支払い方法</li>
+      <li>必要書類・本人確認書類</li>
+      <li>合格基準・配点</li>
     </ul>
-    <p>申込前に1週間分の学習計画を作っておくと、直前での学習抜け漏れを防げます。</p>
+
+    <h2>直前期の学習計画の立て方</h2>
+    <p>申込みが完了したら、試験日から逆算した1〜2週間分の学習スケジュールを作成しましょう。次の流れで進めると、学習抜け漏れを防ぎつつ得点源を増やしやすくなります。</p>
+    <ol>
+      <li>分野別演習で全分野を1周し、現状の正答率を把握する</li>
+      <li>復習モードで誤答のみを2〜3周する</li>
+      <li>残った時間で苦手分野の解説を読み直す</li>
+    </ol>
+
+    <h2>関連ページ</h2>
+    <div class="grid">
+      <a class="button" href={`${base}guide/`}>試験ガイドへ戻る</a>
+      <a class="button" href={`${base}guide/study-method/`}>勉強法のガイドを読む</a>
+      <a class="button primary" href={`${base}quiz/cad-general/`}>分野別演習を始める</a>
+    </div>
   </article>
 </BaseLayout>

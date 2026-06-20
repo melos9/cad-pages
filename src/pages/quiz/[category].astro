@@ -18,13 +18,33 @@ const payload = JSON.stringify({
   categoryName: category.name,
   categories: questionData.categories
 });
+const description = `${category.name}分野の一問一答演習（全${category.questions.length}問）。回答直後に正誤と解説を表示し、誤答は復習モードで再出題されます。スマホ・PC対応の無料Web演習。`;
 ---
-<BaseLayout title={`${category.name} | 分野別演習`} description={`${category.name}の一問一答演習`}>
+<BaseLayout
+  title={`${category.name}の一問一答演習 | CAD利用技術者試験 2次元2級`}
+  description={description}
+>
+  <nav class="breadcrumbs" aria-label="パンくず">
+    <a href={base}>トップ</a> › 分野別演習 › {category.name}
+  </nav>
   <section class="card">
-    <h2>{category.name} 演習</h2>
-    <p>4択の一問一答です。回答直後に正誤と解説を表示します。</p>
-    <div id="quiz-root"></div>
+    <h1>{category.name} の一問一答演習</h1>
+    <p class="lead">4択の一問一答形式です。選択肢をタップすると正誤と解説が表示され、誤答は<a href={`${base}review/`}>復習モード</a>で再出題されます。</p>
+    <div id="quiz-root" aria-live="polite"></div>
   </section>
+
+  <section class="card">
+    <h2>ほかの分野を解く</h2>
+    <div class="grid">
+      {questionData.categories
+        .filter((other) => other.id !== category.id)
+        .map((other) => (
+          <a class="button" href={`${base}quiz/${other.id}/`}>{other.name}の演習へ</a>
+        ))}
+      <a class="button primary" href={`${base}stats/`}>学習状況を確認する</a>
+    </div>
+  </section>
+
   <script id="cad-app-data" type="application/json" set:html={payload}></script>
   <script type="module" src={`${base}scripts/quiz.js`}></script>
 </BaseLayout>

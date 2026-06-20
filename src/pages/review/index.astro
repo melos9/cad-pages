@@ -8,12 +8,28 @@ const payload = JSON.stringify({
   categories: questionData.categories
 });
 ---
-<BaseLayout title="復習モード | CAD利用技術者試験 2次元2級" description="誤答問題だけを再出題する復習モード">
+<BaseLayout
+  title="復習モード | CAD利用技術者試験 2次元2級"
+  description="分野別演習で間違えた問題だけを抽出して再出題する復習モード。短時間で苦手を集中的に潰せるため、試験直前の総仕上げにも活用できます。"
+  noindex={true}
+>
+  <nav class="breadcrumbs" aria-label="パンくず">
+    <a href={base}>トップ</a> › 復習モード
+  </nav>
   <section class="card">
-    <h2>復習モード</h2>
-    <p>localStorage に記録された誤答問題のみを出題します。</p>
-    <div id="quiz-root"></div>
+    <h1>復習モード</h1>
+    <p class="lead">過去に誤答した問題のみを出題します。短時間で苦手分野を集中的に潰すのに最適です。</p>
+    <div id="quiz-root" aria-live="polite"></div>
   </section>
+
+  <section class="card">
+    <h2>関連メニュー</h2>
+    <div class="grid">
+      <a class="button" href={`${base}quiz/cad-general/`}>分野別演習に戻る</a>
+      <a class="button" href={`${base}stats/`}>学習状況を確認する</a>
+    </div>
+  </section>
+
   <script id="cad-app-data" type="application/json" set:html={payload}></script>
   <script type="module" src={`${base}scripts/quiz.js`}></script>
 </BaseLayout>
